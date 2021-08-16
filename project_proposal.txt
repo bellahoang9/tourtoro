@@ -1,0 +1,33 @@
+## Project Proposal
+
+### Overview
+
+A trip planner to organize the perfect vacation with your friends
+Search for activities using the Google Maps API, Yelp API and get text updates with Twilio
+
+### Technologies required (besides typical Hackbright tech stack)
+Google Maps API: 
+https://developers.google.com/maps/documentation/places/web-service/search
+
+Yelp API:
+https://www.yelp.com/developers/documentation/v3/business
+
+
+### Data
+- Userfirst name, last name, email, password
+- City, zip code, state
+  - Maybe more metadata like departure date, return date
+- Suggestion places, restaurants, or events.
+- Planner
+
+#### MVP
+
+- Users can login
+- Users can view a suggestion places, restaurants, or events
+- Users can make a planner
+
+#### 2.0
+
+- Get yelp url, map 
+- Make the UI super slick
+- connect with Google calendar?
