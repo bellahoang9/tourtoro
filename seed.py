@@ -17,7 +17,7 @@ crud.create_user('sisi', 'hughey', 'si@si', 'hughey')
 
 # #create itineraries
 # (trip_name, city, state, zip_code, start_date, end_date, lat, lng)
-crud.create_itinerary('Fancy','San Francisco', 'CA','94111', '2021-12-01', '2021-12-05', 37.7576793, -122.5076413)
+crud.create_itinerary('Fancy','San Francisco', 'CA', '2021-12-01', '2021-12-05', 37.7576793, -122.5076413)
 
 # #associate users with itineraries
 # create_planner(user_id, trip_id)

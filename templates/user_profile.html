@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ fname }}'s Profile{% endblock %}
+
+
+{% block body %}
+<div>
+  <h1 id="user-name"></h1>
+</div>
+<div>
+  <p id="user-email"></p>
+</div>
+<h4 id="itinerary-heading">Your Itineraries</h4>
+<div class="row">
+  <div class="col">
+    <div>
+      <div id="no-itinerary">
+        It looks like you don't have any adventures! Let's plan one.
+      </div>
+      <ul id="user-itineraries">
+      </ul>
+    </div>
+  </div>
+  <div class="col" id="col-two">
+    <!-- Button trigger for new trip modal -->
+    <button type="button" class="btn btn-primary" id="new-trip-btn"
+            data-toggle="modal" data-target="#new-trip-modal"  
+            data-toggle="tooltip" data-placement="top" 
+            title="Click to start planning your next adventure...">
+            Add A New Trip
+    </button>
+    <!-- new trip modal -->
+    <div class="modal fade" id="new-trip-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a New Trip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="new-trip-form" action="/users/trips/new-trip.json" method="POST">
+              <div>Where is your next adventure?
+                <input id="city-input" type="text" name="city" required="required" placeholder="city"/>
+                <input id="state-input" type="text" name="state" required="required" placeholder="state"/>
+              </div>
+              <div>Departure Date:</div>
+              <div>
+                <input id="depart-date" type="date" name="depart" required="required" />
+              </div>
+              <div>Return Date:</div>
+              <div>
+                <input id="return-date" type="date" name="return" required="required" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="new-trip-submit" type="button" class="btn btn-primary">Add Trip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger for join trip modal -->
+    <button type="button" class="btn btn-primary" 
+            data-toggle="modal" data-target="#existing-trip-modal"
+            data-toggle="tooltip" data-placement="top" 
+            title="Join a trip your friends are planning...">
+      Join An Adventure
+    </button>
+    <!-- join trip modal -->
+    <div class="modal fade" id="existing-trip-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Join An Existing Trip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="existing-trip-form" action="/users/trips/add-trip.json" method="POST">
+              <div>You should have received a trip id # from your travel mate.  Please enter it here.
+                <input id="existing-trip-id" type="text" name="id" required="required" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="existing-submit">Add Trip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block after_body %}
+<script src="/static/js/user_profile.js"></script>
+{% endblock %}

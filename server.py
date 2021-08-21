@@ -18,30 +18,114 @@ app.jinja_env.undefined = StrictUndefined
 GG_API_KEY = os.environ['GG_API_KEY']
 YELP_API_KEY = os.environ['YELP_API_KEY']
 
-# @app.route('/')
-# def homepage():
-#     """Show home page"""
-#     return render_template('homepage.html')
+@app.route('/')
+def homepage():
+    """Show home page"""
+    return render_template('homepage.html')
 
-# @app.route('/login', method = ['POST'])
-# def user_login():
-#     """ User log in"""
+@app.route('/login', methods = ['POST'])
+def user_login():
+    """ User log in"""
 
-#     fname = request.form.get('fname')
-#     lname = request.form.get('lname')
-#     email = request.form.get('email')
-#     pass_word = request.form.get('password')
+    email = request.form.get('email')
+    input_password = request.form.get('password')
+    user = helper.get_user_by_email(email)
+    if user == None:
+        flash("This email has not register")
+        return redirect('/')
+    else:
+        if argon2.verify(input_password, user.password):
+            session['EMAIL'] = user.email
+            session['NAME'] = user.fname 
+            session['ID'] = user.user_id
+            return redirect (f'users/profile/{user.fname}')  
+        else:
+            flash('Incorrect Password. Please try again.')
+            return redirect ('/') 
+
+@app.route('/logout')
+def user_logout():
+    """Log out user"""
+
+    session.clear()
+    return redirect('/')
+
+@app.route('/users/create-user.json', methods=['POST'])
+def new_user():
+    """Create new user"""
+
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = helper.get_user_by_email(email)
+
+    if user != None:
+        return jsonify('This email is already exists.')
+    else:
+        crud.create_user(fname, lname, email, password)
+        return jsonify('Your account has been created. Please log in.')
+
+@app.route('/users/profile/<fname>')
+def show_user_profile(fname):
+    """Show logged in user profile"""
+
+    return render_template('user_profile.html', fname=fname)
+
+@app.route('/users/profile/api')
+def get_user_infomation():
+
+    user = helper.get_user_by_email(session['EMAIL'])
+    user_iti = helper.get_trip_by_user(user)
+    return jsonify({'fname': user.fname, 'lname': user.lname, 'email': user.email,
+                    'trips': user_iti})
+
+@app.route('/users/trips/new-trip.json', methods=['POST'])
+def new_itinerary():
+    """Creates a new itinerary for a user and returns data as JSON."""
+
+    user = helper.get_user_by_email(session['EMAIL'])
+    trip_name = request.form.get('trip_name')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    start_date = request.form.get('start_date')
+    end_date = request.form.get('end_date')
+    num_days = crud.calculate_itinerary_days(start_date, end_date)
+    lat, lng = crud.get_latitude_longitude_for_itinerary(city)
+    new_itinerary = crud.create_itinerary(trip_name, city, state, start_date, end_date)
+    crud.create_planner(user.user_id, new_itinerary.trip_id)
+
+    return jsonify({'trip_id': new_itinerary.trip_id, 'trip_name': new_itinerary.trip_name})
+
+
+@app.route('/users/trips/add-trip.json', methods=['POST'])
+def link_itinerary():
+    """Links a user to an existing itienrary and returns data as JSON"""
+
+    user = helper.get_user_by_email(session['EMAIL'])
+    trip_id = request.form.get('id')
+    trip = helper.get_trip_by_id(trip_id)
+    crud.create_planner(user.user_id, trip_id)
+    return jsonify({'trip_id': trip_id, 'trip_name': trip.trip_name})
+
+@app.route('/users/trips/<trip_id>')
+def show_itinerary(trip_id):
+    """Show individual trip itinerary"""
+
+    session['TRIP'] = trip_id
+    return render_template('my_trip.html')
 
 
 
-# if __name__ == "__main__":
-#     # DebugToolbarExtension(app)
-#     connect_to_db(app)
-#     import sys
-#     app.run(host="0.0.0.0", debug=True)
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # DebugToolbarExtension(app)
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    # import sys
+    app.run(host="0.0.0.0", debug=True)
+
+
+
+# if __name__ == '__main__':
+#     connect_to_db(app)
+#     app.run(host='0.0.0.0', debug=True)

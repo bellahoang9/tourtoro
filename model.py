@@ -13,9 +13,10 @@ class User(db.Model):
 
     password = db.Column(db.String)
 
+
+
     def __repr__(self):
         return f'<User user_id={self.user_id} fname={self.fname} email={self.email}>'
-
 
 class Itinerary(db.Model):
     """Itinerary - data of spefific trip created by user"""
@@ -25,17 +26,19 @@ class Itinerary(db.Model):
     trip_name = db.Column(db.String)
     city = db.Column(db.String)
     state = db.Column(db.String)
-    zip_code = db.Column(db.Integer)
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
+
+    #secondary = planner
+    users = db.relationship('User', secondary='planner', backref='trips')
     
     def __repr__(self):
         return f'<Itinerary trip_id={self.trip_id} trip_name={self.trip_name}>'
 
 
-class Planner(db.Model):
+class Planner(db.Model):  
     """Association table for User and Itinerary"""
     __tablename__ = 'planner'
 
@@ -48,8 +51,8 @@ class Planner(db.Model):
                         db.ForeignKey('trips.trip_id'),
                         nullable=False)
 
-    user = db.relationship('User', backref='planner')
-    trip = db.relationship('Itinerary', backref='planner')
+    # user = db.relationship('User', backref='planner')
+    # trip = db.relationship('Itinerary', backref='planner')
 
     def __repr__(self):
         return f'<User Itinerary Association: user_id: {self.user_id} trip_id: {self.trip_id}>'
@@ -87,8 +90,8 @@ def example_data():
 
     user1 = User(fname='bella', lname='hoang', email='funny@bunny', password='shhh')
     user2 = User(fname='sisi', lname='hughey', email='hi@best', password='shhh')
-    seattle = Itinerary(trip_name='Seattle', city='seattle',state='WA', zip_code='98101', start_date='2021-10-05', end_date='2021-10-10', lat=51.528308, lng=-0.3817846)
-    sanjose = Itinerary(trip_name='San Jose', city='san jose',state='CA', zip_code='95121', start_date='2021-09-04', end_date='2021-09-09')
+    seattle = Itinerary(trip_name='Seattle', city='seattle',state='WA', start_date='2021-10-05', end_date='2021-10-10', lat=51.528308, lng=-0.3817846)
+    sanjose = Itinerary(trip_name='San Jose', city='san jose',state='CA', start_date='2021-09-04', end_date='2021-09-09')
     planner = Planner(user_1=2, trip_id=2)
     museum = Activity(trip_id=2,activ_name='the lab', address='san francisco',lat=51.5094269, lng=-0.1303103, activ_date='2021-09-05', activ_time='12:00', activ_note='awesome')
 
@@ -110,7 +113,6 @@ def connect_to_db(flask_app, db_uri="postgresql:///travel", echo=True):
 if __name__ == '__main__':
     from server import app
 
-    # As a convenience, if we run this module interactively, it will leave
-    # you in a state of being able to work with the database directly.
+
     connect_to_db(app)
     print('Connected to db!')
