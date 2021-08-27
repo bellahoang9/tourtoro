@@ -6,13 +6,13 @@
 <script src="/static/js/my_trip_map.js"></script>
 <script
   async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCAzkJ73QJXmoq8jsCvLAe0RRqcNG5vOQ&callback=initMap&libraries=places&v=weekly">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOQQTBRWC2l0vdXxdr_5-OqrTkqCi_QwM&callback=initMap">
 </script>
 {% endblock %}
 
 {% block body %}
 <div id="trip-name"></div>
-<div hidden id="itinerary-id"></div>
+<div hidden id="trip-id"></div>
 <div class="row">
   <div class="col">
     <div id="itinerary">
@@ -25,7 +25,7 @@
     <div class="itin-map">
       <div id="itin-map"></div>
     </div>
-    <div id="add-actitities">
+    <div id="add-activities">
       <button class="btn btn-primary" id="add-activity-btn" action="/users/trips/activities">Add Activities</button>
     </div>
 
@@ -38,17 +38,9 @@
     </div>
   </div>
 </div>
-<!-- add friend modal -->
-<div class="modal fade" id="add-friend-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body" id="add-friend-modal-text">
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 
 {% block after_body %}
 <script src="/static/js/my_trip.js"></script>
 {% endblock %}
+

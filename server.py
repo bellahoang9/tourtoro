@@ -23,6 +23,7 @@ def homepage():
     """Show home page"""
     return render_template('homepage.html')
 
+
 @app.route('/login', methods = ['POST'])
 def user_login():
     """ User log in"""
@@ -81,22 +82,23 @@ def get_user_infomation():
     return jsonify({'fname': user.fname, 'lname': user.lname, 'email': user.email,
                     'trips': user_iti})
 
-@app.route('/users/trips/new-trip.json', methods=['POST'])
+@app.route('/users/trips/new-trip.json', methods = ['POST'])
 def new_itinerary():
     """Creates a new itinerary for a user and returns data as JSON."""
-
+    
     user = helper.get_user_by_email(session['EMAIL'])
-    trip_name = request.form.get('trip_name')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    start_date = request.form.get('start_date')
-    end_date = request.form.get('end_date')
+    trip_name = request.form['trip_name']
+    city = request.form['city']
+    state = request.form['state']
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
     num_days = crud.calculate_itinerary_days(start_date, end_date)
     lat, lng = crud.get_latitude_longitude_for_itinerary(city)
-    new_itinerary = crud.create_itinerary(trip_name, city, state, start_date, end_date)
+    new_itinerary = crud.create_itinerary(trip_name, city, state, start_date, end_date, lat, lng)
     crud.create_planner(user.user_id, new_itinerary.trip_id)
-
-    return jsonify({'trip_id': new_itinerary.trip_id, 'trip_name': new_itinerary.trip_name})
+    print(trip_name)
+    
+    return jsonify({'trip_id': new_itinerary.trip_id, 'trip_name': new_itinerary.trip_name, 'city': new_itinerary.city})
 
 
 @app.route('/users/trips/add-trip.json', methods=['POST'])
@@ -107,7 +109,8 @@ def link_itinerary():
     trip_id = request.form.get('id')
     trip = helper.get_trip_by_id(trip_id)
     crud.create_planner(user.user_id, trip_id)
-    return jsonify({'trip_id': trip_id, 'trip_name': trip.trip_name})
+    return jsonify({'trip_id': trip_id, 'trip_name': trips.trip_name})
+
 
 @app.route('/users/trips/<trip_id>')
 def show_itinerary(trip_id):
@@ -115,6 +118,79 @@ def show_itinerary(trip_id):
 
     session['TRIP'] = trip_id
     return render_template('my_trip.html')
+
+
+@app.route('/users/trips/api')
+def return_json_for_maps():
+    """ Reutrn json to JS for my_trip google map."""
+
+    json_data = helper.json_intinerary_activities(session['TRIP'])
+    return json.dumps(json_data, cls=helper.DateTimeEncoder)
+
+
+@app.route('/users/itinerary/api')
+def return_json_for_itinerary():
+    """ Return json to Js for my_trip page"""
+
+    json_data = helper.jsonify_all_itinerary_data(session['TRIP'], session['ID'])
+    return json.dumps(json_data, cls=helper.DateTimeEncoder)
+
+
+@app.route('/users/trips/activities')
+def activity_search():
+    """Return itinerary info for activity search page"""
+
+    trip_name = helper.get_trip_name(session['TRIP'])
+    return render_template('activitysearch.html', trip_name=trip_name)
+
+
+@app.route('/users/trips/activities.json')
+def return_map_render_json():
+    """Return itinerary info for activity search map"""
+
+    json_data = helper.itinerary_by_id(session['TRIP'])
+    return json.dumps(json_data, cls=helper.DateTimeEncoder)
+
+
+@app.route('/users/trips/new-activity/api', methods=['POST'])
+def add_new_activity():
+    """Add new activity to DB"""
+
+    trip_id = session['TRIP']
+    trip_name = helper.get_trip_name(trip_id)
+    email = session['EMAIL']
+    activ_name = request.form.get('name')
+    address = request.form.get('address')
+    lat_lng = request.form.get('latlng')
+    lat_lng = lat_lng.strip('()').split(', ')
+    lat = float(lat_lng[0])
+    lng = float(lat_lng[1])
+
+    # lat_lng = crud.get_latitude_longitude_for_itinerary(address)
+    # lat = lat_lng[0]
+    # lng = lat_lng[1]
+    print('\n\n\n\n\n\n\n')
+    print(lat_lng)
+    print(address)
+    print(activ_name)
+    print('\n\n\n\n\n\n\n')
+
+    activ_date = request.form.get('activity-date')
+    if activ_date == '':
+        activ_date = None
+    
+    activ_time = request.form.get('activity-time')
+    if activ_time == '':
+        activ_time = None
+
+    activ_note = request.form.get('activity-note')
+    if activ_note == '':
+        activ_note = None
+
+    crud.create_activity(trip_id, activ_name, address,lat, lng, activ_date,  activ_time, activ_note)
+    flash('This activity has been added to your trip')
+    return redirect (f'/users/trips/{trip_id}')
+    # return redirect ('/users/trips/activities')
 
 
 
@@ -125,7 +201,3 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
 
 
-
-# if __name__ == '__main__':
-#     connect_to_db(app)
-#     app.run(host='0.0.0.0', debug=True)

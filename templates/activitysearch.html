@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Activity Search{% endblock %}
+
+{% block head %}
+  <script src="/static/js/map_styles.js"></script>
+  <script src="/static/js/activity_search_map.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOQQTBRWC2l0vdXxdr_5-OqrTkqCi_QwM&callback=initMap&libraries=places&v=weekly"
+      defer></script>
+{% endblock %}
+
+{% block body %}
+  <div>
+    <h3 id="activity-header">Your trip to {{ trip_name }}</h3>
+    <br />
+  </div>
+  <div class="row">
+    <div class="col">
+      <form id="new-activity-form" action="/users/trips/new-activity/api" method="POST">
+        <div class="activity-form" >
+          What day is this for? <span class="optional">(Optional)  </span>
+          <input class="topnav-right activity-form" id="activity-date" type="date" name="activity-date" />
+        </div> 
+        <div class="activity-form">
+          Have a time in mind? <span class="optional">(Optional)  </span>
+          <input class="topnav-right activity-form" id ="activity-time" type="time" name="activity-time" />
+        </div>
+        <textarea class="activity-form" id="activity-note" name="activity-note" cols="29" rows="4" placeholder="Add any comments? (Optional)"></textarea>
+        <br />
+        <input class="btn btn-primary" type="submit" value="Add to Trip" />
+        <input type="hidden" id="latlng" name="latlng" />
+        <input type="hidden" id="place-address" name="address" />
+        <input type="hidden" id="place-name" name="name" />
+      </form>
+      <div id="back-to-itinerary">
+        Head back to your itinerary for <span id="span-trip">{{ trip_name }}...</span>
+      </div>
+    
+    <div class="col-7">
+      <!-- auto complete input settings -->
+      <div style="display: none">
+        <input
+          id="pac-input"
+          height="2"
+          size="25"
+          class="controls"
+          type="text"
+          placeholder="Enter a location..."
+        />
+      </div>
+      <!-- map placement -->
+      <div class="map">
+        <div id="map"></div>
+      </div>
+      <!-- info window settings -->
+      <div id="infowindow-content">
+        <span id="place-name" class="title"></span><br />
+        <span hidden id="place-id"></span><br />
+        <span id="place-address"></span>
+        <!-- <span hidden id="latlng"></span> -->
+      </div>
+    <div>
+  </div>
+{% endblock %}
+{% block after_body %}
+<script src="/static/js/activity_search.js"></script>
+{% endblock %}
+

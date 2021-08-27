@@ -1,20 +1,17 @@
-/* font-family: 'Major Mono Display', monospace;
-font-family: 'Montserrat', sans-serif; */
-/* colors: #f699cb #2d3832 #339989 #8ae5d6 #E2693d */
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f6ddcb;
+    font-family: Blippo, fantasy;
+    background-color: #ffffff;
     color: #2d3832;
  }
 
  nav {
-   background-color: #2d383e;
-    color: #f6ddcb;
+   background-color: #000000;
+    color: #cbe7f6;
  }
 
  h1, h2, h3, h4, h5, h6 {
-   font-family: 'SemiBold', monospace;
+   font-family: Trattatello, fantasy;
 }
 
  li {
@@ -25,12 +22,12 @@ body {
 }
 
 a {
-   color: #9bb2c1;
+   color: #1d4560;
 }
 
 input,
 textarea {
-   background-color: #f6ddcb;
+   background-color: #414f65;
 }
 
 .col {
@@ -38,7 +35,7 @@ textarea {
 }
 
 #app-title {
-   font-family: 'Major Mono Display', monospace;
+   font-family: Trattatello, fantasy;
    font-size: xx-large;
    margin-bottom: 0px;
  }
@@ -46,7 +43,7 @@ textarea {
  .topnav-right {
    float: right;
    font-size: 15px;
-   color: #E2693d;
+   color: #ffffff;
 
  }
 
@@ -73,7 +70,7 @@ textarea {
  #new-trip-submit,
  #existing-submit,
  #phone-submit {
-    background-color: #e9ac86;
+    background-color: #6ea9e8;
     width: fit-content;
  }
 
@@ -86,11 +83,11 @@ textarea {
 
 
 .itin-map #itin-map {
-  height: 400px;
+  height: 500px;
 }
 
 .map #map {
-height: 400px;
+height: 500px;
 }
 
 .itin-map, 
@@ -102,13 +99,13 @@ height: 400px;
 
 #trip-name, 
 #activity-header{ 
-   font-family: 'Major Mono Display', monospace;
+   font-family: Trattatello, fantasy;
    font-size: xx-large;
    text-align: center;
 }
 
 #travel-dates{
-   font-family: 'Major Mono Display', monospace;
+   font-family: Blippo, fantasy;
    font-size: large;
    padding-top: 20px;
 }
@@ -119,19 +116,19 @@ height: 400px;
 }
 
 .activity-name{
-   font-family: 'Montserrat', sans-serif;
+   font-family: Blippo, fantasy;
    padding-left: 60px;
 }
 
 .activity-address{
-   font-family: 'Montserrat', sans-serif;
+   font-family: Blippo, fantasy;
    font-size: x-small;
    padding-left: 60px;
 }
 
 .itinerary-note, 
 .activity-note{
-   font-family: 'Montserrat', sans-serif;
+   font-family: Blippo, fantasy;
     font-size: small;
     padding-top: 10px;
     padding-left: 60px;
@@ -143,19 +140,19 @@ height: 400px;
 }
 
 #misc-activities{
-   font-family: 'Major Mono Display', monospace;
+   font-family: Blippo, fantasy;
    font-size: large;
 }
 
 #notes,
 #friends-list {
-   font-family: 'Major Mono Display', monospace;
+   font-family: Blippo, fantasy;
    font-size: large;
 }
 
 #comment, 
 #comment-date{
-   background-color: #f6ddcb;
+   background-color: #d9cbf6;
    margin-bottom: 15px;
 }
  #travel-mates{
@@ -171,7 +168,7 @@ height: 400px;
  }
 
  #span-trip{
-    color: #E2693d;
+    color: #96b6de;
  }
 
 .activity-form{

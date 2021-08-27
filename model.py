@@ -32,7 +32,7 @@ class Itinerary(db.Model):
     lng = db.Column(db.Float)
 
     #secondary = planner
-    users = db.relationship('User', secondary='planner', backref='trips')
+    # users = db.relationship('User', secondary='planner', backref='trips')
     
     def __repr__(self):
         return f'<Itinerary trip_id={self.trip_id} trip_name={self.trip_name}>'
@@ -51,8 +51,8 @@ class Planner(db.Model):
                         db.ForeignKey('trips.trip_id'),
                         nullable=False)
 
-    # user = db.relationship('User', backref='planner')
-    # trip = db.relationship('Itinerary', backref='planner')
+    user = db.relationship('User', backref='planner')
+    trip = db.relationship('Itinerary', backref='planner')
 
     def __repr__(self):
         return f'<User Itinerary Association: user_id: {self.user_id} trip_id: {self.trip_id}>'

@@ -18,7 +18,7 @@ def get_user_by_email(email):
 def get_trip_by_user(user):
     """ Look up for intineraries by user """
 
-    adventures = db.session.query(Planner.trip_id, Planner.trip_name).join(Itinerary).filter(Planner.user_id == user.user_id).all()
+    adventures = db.session.query(Planner.trip_id, Itinerary.trip_name, Itinerary.city).join(Itinerary).filter(Planner.user_id == user.user_id).all()
     adventures_list = []
 
     for adventure in adventures:
@@ -85,21 +85,21 @@ def list_users_for_trip(given_id, user_id):
 
 def json_intinerary_activities(given_id):
     """ return itinerary and associated activities."""
-    itinerary = itinerary_by_id(given_id)
+    trips = itinerary_by_id(given_id)
     activities = list_activities_by_trip(given_id)
 
-    return {'itinerary': ititerary, 'activities': activities}
+    return {'trips': trips, 'activities': activities}
 
 def jsonify_all_itinerary_data(given_id, user_id):
     """Return all data for an individual itinerary in jsonable format."""
 
-    itinerary = itinerary_by_id(given_id)
+    trips = itinerary_by_id(given_id)
     activities = list_activities_by_trip(given_id)
-    start_date = itinerary.start_date
-    end_date = itinerary.end_date
+    start_date = trips['start_date']
+    end_date = trips['end_date']
     dates = create_dates_list(start_date, end_date)
     friends = list_users_for_trip(given_id, user_id)
-    return {'itinerary': itinerary, 
+    return {'trips': trips, 
             'activities': activities,
             'dates': dates,
             'friends': friends
@@ -126,8 +126,7 @@ class DateTimeEncoder(json.JSONEncoder):
 
         return json.JSONEncoder.default(self, o)
 
-
-
+            
 
 if __name__ == '__main__':
     from server import app

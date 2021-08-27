@@ -27,3 +27,6 @@ decorator==4.4.2
 future==0.18.2
 geocoder==1.38.1
 idna==2.9
+argparse==1.4.0
+yelpapi==2.4.0
+prettyprinter==0.18.0

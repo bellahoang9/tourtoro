@@ -26,5 +26,5 @@ crud.create_planner(2, 1)
 crud.create_planner(3, 1)
 
 # #create activities for Itinerary
-# create_activity(trip_id, activ_name, address,  lat, lng, activ_date, activ_time,  activ_note)
+# create_activity(trip_id, activ_name, address,  lat, lng, activ_day, activ_time,  activ_note)
 crud.create_activity(1, 'Dinner with Friends', '5231 Wendell Lane, Sebastopol, CA, 95472', 38.348009, -122.7702767, '2021-12-4', '17:00', 'get tipsy later')
