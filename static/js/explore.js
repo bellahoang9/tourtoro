@@ -1,28 +1,28 @@
 
 $('#explore-submit').on('click', () => {
-  document.location.href = '/users/trips/explore';
+
     const formData = {
       city: $('#city-given').val(),
       zipcode: $('#zipcode-given').val(),
       term: $('#term-given').val(),
     };
-// });
-    $.post('/users/trips/explore.json', formData, (res) => {
-          explore = []
-          const suggest = res.recommends;
-          const recommend = ''
-          console.log('checking')
-          consolelog(suggest)
-          suggest.forEach(r => {
-            recommend += (`${r.yep_name} ${r.yep_rating} ${r.yep_address}`);
-            explore.push(recommend)
-        });
-          // explore.forEach(rec => {
-          // });  
-          console.log(explore)
-          $('#misc-recommend').append(explore);
-        });
-    
+
+  $.post('/users/trips/explore.json', formData, (res) => {
+    let explore = [];
+    const suggest = res.recommends;
+    suggest.forEach(r => 
+      explore.push(`Name: ${r.yep_name}, rating: ${r.yep_rating}, address: ${r.yep_address}`));
+    explore.forEach(rec => {
+      console.log(rec);
+
+      $("#misc-recommend").append(`<ul>${rec}</ul>`);
+
+      });  
+        
+          
+          
+      });
+  // document.location.href = '/users/trips/explore';
 });
 // $.get('/users/trips/exlpore.json', (data) => {
 //   const recommends = []
