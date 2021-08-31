@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Discover things to do{% endblock %}
+
+{% block head %}
+<!-- <script src="/static/js/map_styles.js"></script>
+<script src="/static/js/my_trip_map.js"></script>
+<script
+  async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOQQTBRWC2l0vdXxdr_5-OqrTkqCi_QwM&callback=initMap">
+</script> -->
+{% endblock %}
+
+{% block body %}
+</br>
+<div><h1>Discover things to do</h1> </div>
+<div id="explore"></div>
+<div class="row">
+  <div class="col">
+    <div id="recommend">
+      <div id="misc-recommend">Don't know where to start? Add these activities for your trip.</div>  
+    </div>
+  </div>
+  <div class="col" id="col-two">
+    <br />
+    <!-- <div class="itin-map">
+      <div id="itin-map"></div>
+    </div> -->
+{% endblock %}
+
+{% block after_body %}
+<script src="/static/js/explore.js"></script>
+{% endblock %}
