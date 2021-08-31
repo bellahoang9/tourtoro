@@ -201,8 +201,9 @@ def show_recommend():
     city = request.form['city']
     zip_code = request.form['zipcode']
     term = request.form['term']
-
+    
     recommends = helper.getting_recommendation(city, zip_code, term)
+
     #jsonify{city:city,}
     return jsonify({'recommends':recommends})
 
@@ -210,7 +211,7 @@ def show_recommend():
 
 @app.route('/users/trips/explore')
 def recommend_search():
-    return render_template('explore.html')
+    return render_template('activitysearch.html')
 
 
 
