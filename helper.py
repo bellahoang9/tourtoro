@@ -1,9 +1,12 @@
 from model import (db, User, Itinerary, Planner, Activity, connect_to_db)
 import json
 import os
+import requests
+from pprint import pprint
 from datetime import date, time, timedelta
 from twilio.rest import Client
 
+YELP_API_KEY = os.environ['YELP_API_KEY']   
 TWILIO_ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
 TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
 
@@ -127,6 +130,58 @@ class DateTimeEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
             
+""" YELP """ 
+def getting_recommendation(city, zip_code, term):
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
+    headers = {
+            'Authorization': 'Bearer %s' %YELP_API_KEY
+        }
+    
+    PARAMS = {'limit':10, 'location':city,'zip_code': zip_code, 'term':term,'sort_by': 'review_count'}
+    res = requests.get(url=ENDPOINT, params=PARAMS, headers=headers)
+    recommends = []
+    data = res.json()
+
+    for business in data['businesses']:
+        yep_name = business['name']
+        yep_rating = business['rating']
+        yep_location = business['location']['display_address']
+        yep_address = yep_location[0] + yep_location[1]
+        recommend = {'yep_name': yep_name,
+                'yep_rating': yep_rating,
+                'yep_address': yep_address}
+        recommends.append(recommend)
+        
+    return recommends
+
+# def explore_list(city, zip_code, term):
+#     recommends = getting_recommendation(city, zip_code, term)
+#     explore = []
+
+#     for recommend in recommends:
+#         name = recommend['yep_name']
+#         rating = recommend['yep_rating']
+#         address = recommend['yep_address']
+
+#         business = f'{name} {rating} {address}'
+
+#         explore.append(business)
+
+#     return explore
+
+
+def getting_yelp_address(decision, city, zip_code, term):
+    recommends = getting_recommendation(city, zip_code, term)
+
+    for idx in range(0, len(recommends)):
+        recommend = recommends[idx]
+        if idx == decision:
+            return recommend['yep_address']
+
+
+
+
+
 
 if __name__ == '__main__':
     from server import app

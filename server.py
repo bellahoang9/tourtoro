@@ -190,7 +190,27 @@ def add_new_activity():
     crud.create_activity(trip_id, activ_name, address,lat, lng, activ_date,  activ_time, activ_note)
     flash('This activity has been added to your trip')
     return redirect (f'/users/trips/{trip_id}')
-    # return redirect ('/users/trips/activities')
+
+
+# YELP API recommend --------------
+
+@app.route('/users/trips/explore.json', methods=['POST'])
+def show_recommend():
+    """Creates a new itinerary for a user and returns data as JSON."""
+    
+    city = request.form['city']
+    zip_code = request.form['zipcode']
+    term = request.form['term']
+
+    recommends = helper.getting_recommendation(city, zip_code, term)
+    #jsonify{city:city,}
+    return jsonify({'recommends':recommends})
+
+    # return json.dumps(data)
+
+@app.route('/users/trips/explore')
+def recommend_search():
+    return render_template('explore.html')
 
 
 
