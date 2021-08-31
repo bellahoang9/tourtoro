@@ -18,6 +18,9 @@
     <div id="itinerary">
       <div id="travel-dates"></div>
       <div id="misc-activities">More Activities:</div>
+      <p></p>
+      <div id="misc-recommend">Don't know where to start? Add these activities for your trip.</div> 
+      <p></p>
       
     </div>
   </div>
@@ -50,7 +53,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form id="explore-form">
+            <form id="explore-form" action="/users/trips/explore.json" method="POST">
               <div>Where do you want to explore?</div>
               <div>
                 <input id="city-given" type="text" name="explore-city" required="required" placeholder="City, State"/>
@@ -63,7 +66,7 @@
                 <input id="term-given" type="text" name="explore-term" required="required" placeholder="Term"/>
               </div>
               <div>
-              <button id="explore-submit" type="button" class="btn btn-primary" action="/users/trips/explore.json" method="POST">Search</button>
+              <button id="explore-submit" type="button" class="btn btn-primary">Search</button>
               </div>
             </form>
           </div>
@@ -71,7 +74,7 @@
       </div>
     </div>
     <div>
-
+      
       <button onclick="window.print()" class="btn btn-primary" id="pretty-print">Print This Itinerary</button>
     </div>
   </div>
