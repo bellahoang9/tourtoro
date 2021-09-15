@@ -24,6 +24,7 @@ def homepage():
     return render_template('homepage.html')
 
 
+
 @app.route('/login', methods = ['POST'])
 def user_login():
     """ User log in"""
@@ -33,7 +34,10 @@ def user_login():
     user = helper.get_user_by_email(email)
     if user == None:
         flash("This email has not register")
+        
+        
         return redirect('/')
+
     else:
         if argon2.verify(input_password, user.password):
             session['EMAIL'] = user.email
@@ -43,7 +47,7 @@ def user_login():
         else:
             flash('Incorrect Password. Please try again.')
             return redirect ('/') 
-
+            
 @app.route('/logout')
 def user_logout():
     """Log out user"""
@@ -96,7 +100,7 @@ def new_itinerary():
     lat, lng = crud.get_latitude_longitude_for_itinerary(city)
     new_itinerary = crud.create_itinerary(trip_name, city, state, start_date, end_date, lat, lng)
     crud.create_planner(user.user_id, new_itinerary.trip_id)
-    print(trip_name)
+
     
     return jsonify({'trip_id': new_itinerary.trip_id, 'trip_name': new_itinerary.trip_name, 'city': new_itinerary.city})
 
@@ -166,15 +170,6 @@ def add_new_activity():
     lat = float(lat_lng[0])
     lng = float(lat_lng[1])
 
-    # lat_lng = crud.get_latitude_longitude_for_itinerary(address)
-    # lat = lat_lng[0]
-    # lng = lat_lng[1]
-    print('\n\n\n\n\n\n\n')
-    print(lat_lng)
-    print(address)
-    print(activ_name)
-    print('\n\n\n\n\n\n\n')
-
     activ_date = request.form.get('activity-date')
     if activ_date == '':
         activ_date = None
@@ -201,10 +196,8 @@ def show_recommend():
     city = request.form['city']
     zip_code = request.form['zipcode']
     term = request.form['term']
-    
     recommends = helper.getting_recommendation(city, zip_code, term)
 
-    #jsonify{city:city,}
     return jsonify({'recommends':recommends})
 
     # return json.dumps(data)

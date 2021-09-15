@@ -23,12 +23,14 @@
   </div>
   <div class="col" id="col-two">
     <!-- Button trigger for new trip modal -->
+
     <button type="button" class="btn btn-primary" id="new-trip-btn"
             data-toggle="modal" data-target="#new-trip-modal"  
             data-toggle="tooltip" data-placement="top" 
             title="Click to start planning your next adventure...">
             Create A New Adventure
     </button>
+    
     <!-- new trip modal -->
     <div class="modal fade" id="new-trip-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -70,14 +72,16 @@
       </div>
     </div>
     <!-- Button trigger for join trip modal -->
+    <!-- <ul>
     <button type="button" class="btn btn-primary" 
             data-toggle="modal" data-target="#existing-trip-modal"
             data-toggle="tooltip" data-placement="top" 
             title="Join a trip your friends are planning...">
       Join An Adventure
     </button>
+    </ul> -->
     <!-- join trip modal -->
-    <div class="modal fade" id="existing-trip-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="existing-trip-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -98,10 +102,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 {% endblock %}
 
 {% block after_body %}
 <script src="/static/js/user_profile.js"></script>
+
 {% endblock %}

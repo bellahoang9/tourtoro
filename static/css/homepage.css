@@ -1,17 +1,17 @@
-/* font-family: 'Major Mono Display', monospace;
-font-family: 'Montserrat', sans-serif; */
+
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
+    background-color: #ffe5d0;
     color: #393837;
-    text-align: center;
+    /* text-align: right; */
+    text-align: left;
     height: 100%
 }
 
 .bkimg{
-    background-image: url(/static/img/page.jpg);
-    height: 100%;
+    background-image: url(/static/img/homepage.jpg);
+    height: 100vh;
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
@@ -24,26 +24,88 @@ body {
 }
 
 #adventure-title {
+
     font-family: 'SemiBold', monospace;
     font-weight: bolder;
-    font-size: xxx-large;
+    /* font-size: xxx-large; */
+    font-size: 500px;
 }
+.h1, h1 {
+    font-size: 3.5rem;
+    margin-left: 10px;
+    margin-bottom: .3em;
+    font-family: Trattatello, fantasy;
+    font-weight: bolder;
 
+}
+img {  
+    max-width: 5%;  
+    height: auto; 
+    border-radius: 200%;
+    }  
+
+.h2, h2 {
+    font-size: 2.5rem;
+    margin-left: 150px;
+    margin-bottom: .3em;
+    font-family: Trattatello, fantasy;
+    font-weight: bolder;
+    
+}
+#alert {
+    background-color: beige;
+    font-size: 22px;
+    font-weight: bolder;
+
+}
 #login-info {
-    padding-top: 510px;
+    padding-top: 150px;
 }
-
+#email-input {
+    margin-left: 120px;
+}
+#pw-input {
+    margin-left: 120px;
+    margin-top: 5px;
+}
 #submit-btn {
     background: transparent;
     color: #4a4a4a;
     margin-top: 5px;
-}
+    margin-left: 370px;
 
+}
+#sign-up {
+    background: transparent;
+    color: #4a4a4a;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    margin-left: 200px;
+}
+.modal-content, .modal-header{
+    /* background-color: #78716d; */
+    background-color: #d3c9b5;
+    color: #1a1614
+  }
+
+  .btn.btn-primary {
+    background-color: #dd9678;
+    color: #592b1f;
+    border-color: #da9e84;
+    width: 330px;
+    height: 47px;
+    margin-bottom: 15px;
+
+ }
+ #new-user-submit {
+    background-color: #928360;
+    width: fit-content;
+ }
 #new-email, 
 #new-password,
 #new-fname, 
 #new-lname {
-    background-color: #5e5e5e;
+    background-color: rgba(117, 101, 101, 0.87);
     margin-bottom: 5px;
 }
 
@@ -61,3 +123,4 @@ body {
     padding-right: 4px;
     padding-bottom: 0px;
 }
+

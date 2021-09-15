@@ -26,7 +26,7 @@ $('#new-trip-submit').on('click', () => {
   };
   console.log(formData)
   $.post('/users/trips/new-trip.json', formData, (response) => {
-    $('#user-itineraries').append(`<li><a href="/users/trips/${response['trip_id']}">${response['trip_name']}${response['city']}${response['state']}</a></li>`);
+    $('#user-itineraries').append(`<li><a href="/users/trips/${response['trip_id']}">${response['trip_name']}</a></li>`);
     $('#new-trip-modal').modal('toggle');
     $('#no-itinerary').hide();
   });

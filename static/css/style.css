@@ -1,35 +1,62 @@
 
 body {
-    font-family: Blippo, fantasy;
-    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffe5d0;
     color: #2d3832;
+    background-image: url(/static/img/page.jpg);
+    height: 100%;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
  }
+ #alert {
+   background-color: beige;
+   font-size: 22px;
+   font-weight: bolder;
+
+}
 
  nav {
-   background-color: #000000;
-    color: #cbe7f6;
+   background-color: #736155;
+    color: #f1cbbe;
  }
-
- h1, h2, h3, h4, h5, h6 {
-   font-family: Trattatello, fantasy;
+ h2,h3,h4,h5,h6 {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 50px;
+ }
+h4 {
+   font-size: x-large;
+   font-weight: bold;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   margin-left: 200px;
 }
 
  li {
    margin-left: 20px;
    margin-bottom: 5px;
-   font-size: 25px;
+   font-size: 30px;
    font-weight: bold;
 }
 
 a {
-   color: #1d4560;
+   color: #514943;
+}
+#itinerary {
+   font-size: 2.0rem;
 }
 
-input,
+
 textarea {
-   background-color: #414f65;
-}
+   background-color: #eeeeee;
 
+}
+text,input,placeholder {
+
+   color: rgb(101, 64, 37);
+}
 .col {
    margin-left: 15px;
 }
@@ -43,41 +70,45 @@ textarea {
  .topnav-right {
    float: right;
    font-size: 15px;
-   color: #ffffff;
+   color: #f1cbbe;
 
  }
 
  #user-name, #user-email{
     text-align: center;
+    font-weight: bolder;
+    font-family: Gill Sans, sans-serif;
  }
 
 .btn.btn-primary {
-    background-color: #667e91;
-    color: #2d3832;
-    font-family: 'SemiBold', monospace;
-    border-color: #2d3832;
+    background-color: #dd9678;
+    color: #592b1f;
+    border-color: #da9e84;
     width: 330px;
     height: 47px;
     margin-bottom: 15px;
+    margin-right: 50px;
 
  }
 
  .modal-content, .modal-header{
-   background-color: #98b3c6;
-   color: #2d383e
+
+   background-color: #d3c9b5;
+   color: #1a1614
  }
 
  #new-trip-submit,
  #existing-submit,
- #phone-submit {
-    background-color: #6ea9e8;
+ #explore-submit {
+    background-color: #928360;
     width: fit-content;
  }
 
-
+#user-itineraries {
+   padding-bottom: 500px;
+}
 #text-disable-text {
-   background-color: #b0c1ce;
-   font-family: 'Major Mono Display', monospace;
+   background-color: #e4d4b2;
    text-align: center;
 }
 
@@ -88,25 +119,28 @@ textarea {
 
 .map #map {
 height: 500px;
+
 }
 
 .itin-map, 
 .map {
-  background-color: #2d383e;
+  background-color: #060707;
   padding: 5px;
+  margin-right: 50px;
 }
 
 
 #trip-name, 
 #activity-header{ 
-   font-family: Trattatello, fantasy;
+   font-family: Gill Sans, sans-serif;
+   font-weight: bolder;
    font-size: xx-large;
    text-align: center;
 }
 
 #travel-dates{
-   font-family: Blippo, fantasy;
-   font-size: large;
+   font-size: x-large;
+   margin-left: 80px;
    padding-top: 20px;
 }
 
@@ -116,43 +150,52 @@ height: 500px;
 }
 
 .activity-name{
-   font-family: Blippo, fantasy;
    padding-left: 60px;
 }
 
 .activity-address{
-   font-family: Blippo, fantasy;
-   font-size: x-small;
+   font-size: medium;
    padding-left: 60px;
 }
 
 .itinerary-note, 
 .activity-note{
-   font-family: Blippo, fantasy;
-    font-size: small;
+    font-size: medium;
     padding-top: 10px;
     padding-left: 60px;
+
 }
 
 .days{
+
    margin-top: 10px;
    margin-bottom: 10px;
 }
 
-#misc-activities{
-   font-family: Blippo, fantasy;
+#misc-recommend{
    font-size: large;
+   margin-top: 20px;
+   margin-left: 50px;
+}
+#misc-activities{
+   font-size: large;
+   font-weight: bolder;
+   margin-top: 20px;
+   margin-left: 50px;
 }
 
+img {  
+   max-width: 25%;  
+   height: auto;  
+   }  
 #notes,
 #friends-list {
-   font-family: Blippo, fantasy;
    font-size: large;
 }
 
 #comment, 
 #comment-date{
-   background-color: #d9cbf6;
+   background-color: #857e85;
    margin-bottom: 15px;
 }
  #travel-mates{
@@ -168,13 +211,28 @@ height: 500px;
  }
 
  #span-trip{
-    color: #96b6de;
+    color: #a3543d;
+    font-size: large;
  }
 
 .activity-form{
     margin-bottom: 15px;
+   font-weight: bolder;
+   font-size: 20px;
+    
  }
  #add-activity-btn{
     margin-top: 15px;
  }
 
+ #activity-date{
+   color: black;
+   margin-right: 500px;
+}
+#activity-time {
+   color: black;
+   /* margin-right: 10px; */
+}
+#back-to-itinerary {
+   font-size: 20px;
+}

@@ -9,47 +9,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&display=swap" 
         rel="stylesheet">
   <!-- <link rel="icon" href="/static/logo.png"> -->
-  <link rel="stylesheet" href="/static/css/style.css"/>
+  <!-- <link rel="stylesheet" href="/static/css/style.css"/> -->
   <link rel="stylesheet" href="/static/css/homepage.css"/> 
   <script src="https://code.jquery.com/jquery-3.5.1.js"
           integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
           crossorigin="anonymous"></script>
 </head>
 <body>
-  {% for msg in get_flashed_messages() %}
+  <!-- {% for msg in get_flashed_messages() %}
+  
     <p class="flash-msg">
       {{ msg }}
     </p>
-  {% endfor %}
+  {% endfor %} -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div id="alert" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
   <div class="bkimg">
+  
     <div class="title">
-      <div id="adventure-title"><h1>TOURTORO</h1></div>
-      <div><h2>The better way to plan your next adventure ...</h2></div>
+      <br>
+      <div id="adventure-title"><h1><img src=static/img/logo.png>TOURTORO</h1></div>
+      
+      <div><h2>The better way to plan<br> your next adventure ...</h2></div>
     </div>
 
     <div id="login-info">
       <div id="login">
         <form id="login-form" action="/login" method="POST">
-          <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
+          <div class="col-4">
+            <ul>
+              <div id="email-input" class="col">
               <input class="form-control" type="text" name="email" required="required" placeholder="Email" />
-            </div>
-            <div class="col">
+              </div>
+            </ul>
+            
+            <ul>
+            <div id="pw-input" class="col">
               <input class="form-control" type="password" name="password" required="required" placeholder="Password" />
             </div>
-            <div class="col">
-            </div>
+            </ul>
+
           </div>
           <div>
             <input id="submit-btn" type="submit" value="Log In" />
           </div>
         </form>
       </div>
+  
   </div>
-
-  <div data-toggle="modal" data-target="#new-user-modal">
+  <div id="sign-up" data-toggle="modal" data-target="#new-user-modal">
     Need an account? Click here to sign up...
   </div>
 
@@ -67,6 +86,7 @@
           <form id="new-user-form" submit="/users/create-user.json" method="POST">
             <div>
               <input id="new-email" type="text" name="email" required="required" placeholder="Email">
+              
             </div>
             <div>
               <input id="new-password" type="text" name="password" required="required" placeholder="Password">
@@ -75,7 +95,7 @@
               <input id="new-fname" type="text" name="fname" required="required" placeholder="First Name">
             </div>
             <div>
-              <input id="new-lname" type="test" name="lname" required="required" placeholder="Last Name">
+              <input id="new-lname" type="text" name="lname" required="required" placeholder="Last Name">
             </div>
           </form>
         </div>

@@ -20,11 +20,23 @@
     {% block head %}{% endblock %}
   </head>
   <body>
-    {% for msg in get_flashed_messages() %}
+    <!-- {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}
       </p>
-    {% endfor %}
+    {% endfor %} -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div id="alert" class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
     <nav class="navbar sticky-top">
       <h1 class="navbar-brand" id="app-title">
         TOURTORO

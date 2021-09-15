@@ -38,7 +38,7 @@ const myMapStyle = [
                 "visibility": "simplified"
             },
             {
-                "color": "#D6BFEA"
+                "color": "#a48b7a"
             }
         ]
     },

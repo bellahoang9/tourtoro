@@ -30,3 +30,4 @@ idna==2.9
 argparse==1.4.0
 yelpapi==2.4.0
 prettyprinter==0.18.0
+pyautogui

@@ -147,9 +147,12 @@ def getting_recommendation(city, zip_code, term):
         yep_rating = business['rating']
         yep_location = business['location']['display_address']
         yep_address = yep_location[0] + yep_location[1]
+        yep_img = business['image_url']
+       
         recommend = {'yep_name': yep_name,
                 'yep_rating': yep_rating,
-                'yep_address': yep_address}
+                'yep_address': yep_address,
+                'yep_img': yep_img}
         recommends.append(recommend)
         
     return recommends

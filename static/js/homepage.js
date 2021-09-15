@@ -10,10 +10,22 @@ $('#new-user-submit').on('click', () => {
         lname: $('#new-lname').val()
         };
 
-    $.post('/users/create-user.json', formData, (response) => {
+    // else if (formData.password.length === 0){
+    //     alert('Invalid password!')
+    // }
+    // else if (formData.fname.length === 0){
+    //     alert('Please enter your first name!')
+    // }
+    // else if (formData.lname.length === 0){
+    //     alert('Please enter your last name!')
+    // }
+
+        $.post('/users/create-user.json', formData, (response) => {
         $('#new-user-modal').modal('toggle');
         alert(response)
         });
+
+    
 });
 
 

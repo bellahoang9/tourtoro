@@ -18,13 +18,14 @@ headers = {
 # #restaurants,coffee,desserts,bubbletea,sushi,, 
 # PARAMETERS = {'limit':10, 'location':'San Jose, CA', 'zip_code':95121,'attributes':'hot and new', 'term':'coffee'}
 #sort_by: rating
-PARAMETERS = {'limit':10, 'location':'San Jose, CA','zip_code': 95121, 'term':'restaurant','sort_by': 'review_count'}
+PARAMETERS = {'limit':1, 'location':'San Jose, CA','zip_code': 95121, 'term':'restaurant','sort_by': 'review_count'}
 res = requests.get(url=ENDPOINT, params=PARAMETERS, headers=headers)
 
 data = res.json()
 # print(data)
 for business in data['businesses']:
-    print(business['name'], business['rating'], business['location']['display_address'])
+    
+    print(business['name'], business['rating'], business['location']['display_address'], business['image_url'])
 
 
 

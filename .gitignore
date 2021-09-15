@@ -4,3 +4,4 @@ secrets.sh
 env
 secrets.sh
 __pycache__/
+*.DS_Store

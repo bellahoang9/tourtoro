@@ -1,42 +1,44 @@
 
-$('#explore-submit').on('click', () => {
-
+$('#explore-submit').on('click', (evt) => {
+    // evt.preventDefault();
+    default_display_state();
     const formData = {
       city: $('#city-given').val(),
       zipcode: $('#zipcode-given').val(),
       term: $('#term-given').val(),
     };
-
+  if (formData.city.length === 0){
+    alert('Please enter city for the suggestion!')
+  }
+  else {
   $.post('/users/trips/explore.json', formData, (res) => {
     let explore = [];
-    const suggest = res.recommends;
-    suggest.forEach(r => 
-      explore.push(`Name: ${r.yep_name}, rating: ${r.yep_rating}, address: ${r.yep_address}`));
-    explore.forEach(rec => {
-      console.log(rec);
+    const recommends = res.recommends;
 
-      $("#misc-recommend").append(`<ul>${rec}</ul>`);
+    recommends.forEach(r => 
+      explore.push([`Name: ${r.yep_name}, rating: ${r.yep_rating}⭐, address: ${r.yep_address} `, r.yep_img ]));
+      
+    explore.forEach(rec => {
+      $("#misc-recommend").append(`<ul>${rec[0]}</ul> <img src="${rec[1]}">`);
+      
+
 
       });  
         
           
           
       });
-  // document.location.href = '/users/trips/explore';
-});
-// $.get('/users/trips/exlpore.json', (data) => {
-//   const recommends = []
-//   const response = JSON.parse(data);
-//   console.log(response)
-//   response.forEach(r => {
-//     recommend = (`${r.yep_name} ${r.yep_rating} ${r.yep_address}`);
-//     recommends.push(recommend)
-//   });
+    }
+    $('#explore-modal').css("display", "none");
+    $('body').removeClass("modal-open");
+    $('.modal-backdrop').css("display", "none");
 
-//   recommends.forEach(rec => {
-//     $('#misc-recommend').append(rec);
-//   });
-// });
+  });
+  
 
+function default_display_state() {
+  $('#misc-recommend').html('');
+
+};
 
 
