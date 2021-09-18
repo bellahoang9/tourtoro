@@ -44,9 +44,9 @@ $.get('/users/itinerary/api', (data) => {
 //Sorted activities from earliest
 timedActivities.sort((a, b) => a.iso - b.iso);
 // concat time and untime activities to one array
-activites = timedActivities.concat(untimedActivities);
+activities = timedActivities.concat(untimedActivities);
 //Adds activities to the specific day or to bottom of list
-activites.forEach(a => {
+activities.forEach(a => {
   // adds undated activity to misc. section of itinerary
   if (a.activ_date === null) {
     // const day = document.createElement('div');
