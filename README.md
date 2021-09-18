@@ -133,5 +133,5 @@ $ python3 server.py
 You can now navigate to 'localhost:5000/' to access Tourtoro.
 ```
 
-### <a name="aboutthedeveloper"></a> About the Developer
+### <a name="aboutthedeveloper"></a> About the Developer 🌱👩🏻‍💻✨🦄
 Tourtoro developer Bella Hoang is a new grad software engineer. This is her first full-stack project and was only possible with the support of her teachers at Hackbright Academy. She can be found on [LinkedIn](https://www.linkedin.com/in/thuhoang-bella/) and on [Github](https://github.com/bellahoang9).
