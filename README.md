@@ -29,38 +29,38 @@ Tourtoro is a full stack web application that allows users to make a trusty trip
 * Google Geocoder
 
 ## <a name="features"></a>Features
-#### Landing Page
+#### Landing Page 🔐
 Users  can register or login on the Jinja2 and Javascript rendered landing page. Passwords are encrypted using argon2 hashing for user security.
 
 ![alt text](/static/img/hompage.gif "Toutoro landing page")
 
-#### User Profile Page
+#### User Profile Page 🗓
 After a user has created an account and logged in they will be redirected to their profile page.  Here the user can see all of their existing trips, plan a new trip by entering a place and dates.
 
 ![alt text](/static/img/userprofile.gif "Toutoro user profile page")
 
-#### Itinerary Pages
+#### Itinerary Pages 📝 
 Users can see their itinerary with all activities broken down by day and time for a trip.  Undated activities will appear at the bottom of the itinerary.  All activities will also appear on the trip map, and clicking a marker will quickly show the user what day their activity is planned for.  This space also allows users to get suggestions for places to visit and eat based on their selected location, print their itinerary.
 
 ![alt text](/static/img/trip.gif "Tourtoro itinerary page")
 
-#### Activity insert
+#### Activity insert  📆 
 The activity insert page is linked to the itinerary and features an autocomplete map. Both maps are rendered using the Google Maps JavaScript API with the help of Google Places and Google Geocoder.  Users can insert for address, museums, restaurants and activities and will be offered autocomplete suggestions based on the latitude and longitude of their trip.  Once an activity is selected, the user can add a date, time and additional notes if desired before adding the item to their trip.
 
 ![alt text](/static/img/activity.gif "Tourtoro activity insert page")
 
-#### Getting suggestion
+#### Getting suggestion 🔎
 If users don't know what to do, where to go and eat around the area of their adventure. This feature is the best way to give suggestion for user to explore places to visit and eat based on their selected location by using Yelp APIs. Users can insert for city, zip-code, and term they would like to search, it will give mostly 10 suggestion with bussiness name, ratings, address and photo base on highly ratings.
 
 ![alt text](/static/img/suggestion.gif "Tourtoro suggestion")
 
-#### Print trip planner
+#### Print trip planner 📄
 If users would like to print out their suggestion or itinerary, this feature will give user that opportunity.
 
 ![alt text](/static/img/print.gif "Tourtoro print itinerary")
 
 
-## <a name="future"></a>The Future of Adventure Awaits
+## <a name="future"></a>The Future of Tourtoro
 There are lots of new features planned for additional sprints:
 * Archiving of past trips
 * Functionality to edit or delete activities and notes from itineraries
@@ -105,7 +105,8 @@ Sign up to use the [Yelp API](https://www.yelp.com/developers)
 
 Sign up to use the [Google Maps Javascript, Google Places and Geocoder APIs](https://cloud.google.com/maps-platform/)
 
-You will need to register for 2 API keys.  One will be used in the JavaScript front-end and one for the Python back-end.  Your front-end API key will need to be locked to your personal IP address and included in your script tags, the back-end key will need to be saved as below:
+You will need to enable for 2 APIs [Google Maps Javascript, Google Places and Geocoder APIs](https://cloud.google.com/maps-platform/).  You will be used in the JavaScript front-end and one for the Python back-end.  Your front-end API key will need to be locked to your personal IP address and included in your script tags, the back-end key will need to be saved as below:
+
 Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
 ```
 export YELP_API_KEY='YOUR_KEY_HERE'
