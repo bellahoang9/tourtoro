@@ -100,8 +100,11 @@ $ pip3 install -r requirements.txt
 ```
 
 Get an API key from Google's APIs and Yelp's APIs, add your API key to a secrets.sh file.
+
 Sign up to use the [Yelp API](https://www.yelp.com/developers)
+
 Sign up to use the [Google Maps Javascript, Google Places and Geocoder APIs](https://cloud.google.com/maps-platform/)
+
 You will need to register for 2 API keys.  One will be used in the JavaScript front-end and one for the Python back-end.  Your front-end API key will need to be locked to your personal IP address and included in your script tags, the back-end key will need to be saved as below:
 Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
 ```
@@ -130,4 +133,4 @@ You can now navigate to 'localhost:5000/' to access Tourtoro.
 ```
 
 ### <a name="aboutthedeveloper"></a> About the Developer
-Tourtoro developer Thalia Lietz is a new grad software engineer. This is her first full-stack project and was only possible with the support of her teachers at Hackbright Academy. She can be found on [LinkedIn](https://www.linkedin.com/in/thuhoang-bella/) and on [Github](https://github.com/bellahoang9).
+Tourtoro developer Bella Hoang is a new grad software engineer. This is her first full-stack project and was only possible with the support of her teachers at Hackbright Academy. She can be found on [LinkedIn](https://www.linkedin.com/in/thuhoang-bella/) and on [Github](https://github.com/bellahoang9).
