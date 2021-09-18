@@ -3,7 +3,7 @@ Tourtoro is a full stack web application that allows users to make a trusty trip
 
 
 
-![Homepage](/static/img/gif/home.png "Homepage")
+![Homepage](/static/img/toto.png "Homepage")
 
 ## Contents
  - [Technologies](#technologies)
@@ -31,7 +31,7 @@ Tourtoro is a full stack web application that allows users to make a trusty trip
 ## <a name="features"></a>Features
 #### Landing Page
 Users  can register or login on the Jinja2 and Javascript rendered landing page. Passwords are encrypted using argon2 hashing for user security.
-![alt text](/static/img/gif/homepage.gif "Toutoro landing page")
+![alt text](/static/img/homepage.gif "Toutoro landing page")
 
 #### User Profile Page
 After a user has created an account and logged in they will be redirected to their profile page.  Here the user can see all of their existing trips, plan a new trip by entering a place and dates.
